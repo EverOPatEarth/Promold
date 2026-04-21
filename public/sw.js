@@ -1,8 +1,10 @@
-const CACHE_NAME = 'multi-calc-v1';
+const CACHE_NAME = 'multi-calc-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 // Install Event: Cache essential assets
@@ -10,7 +12,11 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('[Service Worker] Caching app shell');
-      return cache.addAll(ASSETS_TO_CACHE);
+      return cache.addAll(ASSETS_TO_CACHE).catch(err => {
+        console.warn('[Service Worker] Some assets failed to cache, proceeding anyway...', err);
+        // Remove only the missing assets from ASSETS_TO_CACHE if needed, 
+        // but for now we just continue so the SW installs.
+      });
     })
   );
   self.skipWaiting();
