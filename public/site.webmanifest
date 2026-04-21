@@ -1,8 +1,10 @@
 {
-  "name": "Multi-Calc Mold Suite",
-  "short_name": "Multi-Calc",
+  "id": "/",
+  "name": "ProMold Expert Calculators",
+  "short_name": "ProMold",
   "description": "Professional offline mold design engineering calculators.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#07090f",
   "theme_color": "#07090f",
